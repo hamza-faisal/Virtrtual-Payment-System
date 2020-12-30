@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author SWHB
+ 
  */
 public class Cart extends javax.swing.JPanel {
 
@@ -40,7 +40,7 @@ public class Cart extends javax.swing.JPanel {
          try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sq2="Select Count(Item_ID) as \"Number\" from CartView where CMS_ID='"+myID+"'";
                
@@ -269,7 +269,7 @@ public class Cart extends javax.swing.JPanel {
         try
         {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
               String sql1="Delete Cart where CMS_ID='"+this.myID+"' and Item_ID="+searchedItemID[index]+" and Shop_ID='"+searchedShopID[index]+"'";
             st=con.createStatement();   
              rs=st.executeQuery(sql1);   
@@ -338,7 +338,7 @@ public class Cart extends javax.swing.JPanel {
             try
             {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             if(isBalenceSufficient(lblBalance))
             {
               for(int i=0; i<noOfItems; i++)  
@@ -377,11 +377,9 @@ public class Cart extends javax.swing.JPanel {
             rs=st.executeQuery(sq3);
               System.out.println("After 4 Query");
             }   
-                            
+              
           Items.removeAllElements();
           lblCartNo.setText(Integer.toString(0));
-          JOptionPane.showMessageDialog(null, "Congrates !! Purchased Done..");
-
               
             }
             else
@@ -537,7 +535,7 @@ public class Cart extends javax.swing.JPanel {
          try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sq2="Select Count(Item_ID) as \"Number\" from CartView where CMS_ID='"+myID+"'";
                

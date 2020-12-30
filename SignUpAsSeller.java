@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author SWHB
+ * 
  */
 public class SignUpAsSeller extends javax.swing.JFrame {
 
@@ -398,7 +398,7 @@ public class SignUpAsSeller extends javax.swing.JFrame {
         try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sql="Select Shop_ID.nextval as \"ID\" from dual";
              st=con.createStatement();
@@ -429,7 +429,7 @@ public class SignUpAsSeller extends javax.swing.JFrame {
             try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sql="insert into Seller(UserKey,Shop_ID,Shop_Name,Owner_Name,Shop_Type,Password,Balance,Available) values("+2+",'"+Shop_ID+"','"+txtFullName.getText()+"','"+txtCMS.getText()+"','"+txtDept.getText()+"','"+txtPassword.getText()+"',"+00.00+","+0+")";
              st=con.createStatement();

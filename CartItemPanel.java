@@ -12,7 +12,7 @@ import javax.swing.ListCellRenderer;
 
 /**
  *
- * @author SWHB
+
  */
 public class CartItemPanel extends javax.swing.JPanel implements ListCellRenderer<CartItemObject>{
 

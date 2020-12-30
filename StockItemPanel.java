@@ -12,7 +12,7 @@ import javax.swing.ListCellRenderer;
 
 /**
  *
- * @author SWHB
+ *
  */
 public class StockItemPanel extends javax.swing.JPanel implements ListCellRenderer<StockItemObject>{
 

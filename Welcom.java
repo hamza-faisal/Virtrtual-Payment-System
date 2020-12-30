@@ -11,11 +11,11 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author SWHB
+ * 
  */
 public class Welcom extends javax.swing.JFrame {
 
-    String IP="";
+    public String IP="10.102.163.236";
 
     public Welcom() {
         initComponents();

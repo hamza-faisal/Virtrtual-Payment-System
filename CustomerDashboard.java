@@ -8,34 +8,38 @@ package vpaysystem;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- 
+ *
  */
-public class SellerDashboard extends javax.swing.JFrame {
-
-    GridBagConstraints c;
-    
-  
-    
-   
+public class CustomerDashboard extends javax.swing.JFrame {
+   GridBagLayout grid= new GridBagLayout();
+ GridBagConstraints c;
+ JPanel previous;  
+ //CartItem cart=new CartItem();
+ boolean isDisplayCartItem=true;
    String IP;
-    JPanel previous;
-    public SellerDashboard(String myID,String IP) {
-        initComponents();
-       
-        c= new GridBagConstraints();
+    public CustomerDashboard(String myID, String IP) {
       
+        
+        initComponents();
         this.setSize(1200,700);
         this.setLocationRelativeTo(this);
         this.IP=IP;
+      c= new GridBagConstraints();
+                this.setSize(1200,700);
         this.myID=myID;
+        int no=checkCart();
+        lblCartNo.setText(Integer.toString(no));
         Connection con;
         Statement st;
         ResultSet rs;
@@ -45,13 +49,13 @@ public class SellerDashboard extends javax.swing.JFrame {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
             con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
-            String sql="Select Shop_Name, Balance from Seller where Shop_ID='"+myID+"'";
+            String sql="Select Customer_Name,Balance from Customer where CMS_ID='"+myID+"'";
              
              st=con.createStatement();
             rs=st.executeQuery(sql);
              
            rs.next();
-                lblName.setText(rs.getString("Shop_Name"));
+                lblName.setText(rs.getString("Customer_Name"));
                 lblBalance.setText(Integer.toString(rs.getInt("Balance")));
              
          
@@ -59,7 +63,7 @@ public class SellerDashboard extends javax.swing.JFrame {
             }
             catch(Exception e)
             {
-               System.out.println(e.getMessage());
+               // System.out.println(e.getMessage());
             }
    
     }
@@ -72,15 +76,13 @@ public class SellerDashboard extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        mainPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lb = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblOpen = new javax.swing.JPanel();
@@ -95,12 +97,18 @@ public class SellerDashboard extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        hiistory = new javax.swing.JPanel();
+        TransactionHistory = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         lblOpen6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        hiistory1 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        lblOpen10 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         viewCart = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         lblOpen7 = new javax.swing.JPanel();
@@ -119,41 +127,31 @@ public class SellerDashboard extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        Logout1 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        lblOpen10 = new javax.swing.JPanel();
-        jLabel35 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblBalance = new javax.swing.JLabel();
+        hiistory2 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        lblBalance = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
+        lblOpen11 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        hiistory3 = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        lblOpen12 = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        Daynamic = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        lblCartNo = new javax.swing.JLabel();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(null);
-
-        mainPanel.setBackground(new java.awt.Color(52, 52, 60));
-        mainPanel.setLayout(new java.awt.GridBagLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-list-32.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(600, 820, 60, 50);
-        mainPanel.add(jLabel2, gridBagConstraints);
-
-        getContentPane().add(mainPanel);
-        mainPanel.setBounds(310, 0, 910, 700);
 
         jPanel2.setBackground(new java.awt.Color(34, 33, 38));
         jPanel2.setLayout(null);
@@ -171,11 +169,11 @@ public class SellerDashboard extends javax.swing.JFrame {
         jPanel2.add(jPanel5);
         jPanel5.setBounds(80, 20, 0, 0);
 
-        lb.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lb.setForeground(new java.awt.Color(255, 255, 255));
-        lb.setText("Shop Balance (Rs.) : ");
-        jPanel2.add(lb);
-        lb.setBounds(30, 150, 170, 22);
+        lblName.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
+        lblName.setText("Syed Waqar Haider Bukhari");
+        jPanel2.add(lblName);
+        lblName.setBounds(30, 130, 240, 22);
 
         jPanel3.setLayout(null);
 
@@ -203,10 +201,10 @@ public class SellerDashboard extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("View Sale History");
+        jLabel4.setText("Show Open Shops");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblOpen.add(jLabel4);
-        jLabel4.setBounds(90, 10, 210, 20);
+        jLabel4.setBounds(100, 12, 150, 20);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/openShops.png"))); // NOI18N
         lblOpen.add(jLabel5);
@@ -239,7 +237,7 @@ public class SellerDashboard extends javax.swing.JFrame {
         lblOpen1.setBounds(0, 180, 310, 50);
 
         jPanel2.add(lblOpen);
-        lblOpen.setBounds(0, 190, 310, 50);
+        lblOpen.setBounds(0, 210, 310, 50);
 
         transfer.setBackground(new java.awt.Color(33, 34, 38));
         transfer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -258,7 +256,7 @@ public class SellerDashboard extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Withdraw Amount");
+        jLabel12.setText("Transfer Amount");
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transfer.add(jLabel12);
         jLabel12.setBounds(100, 12, 150, 20);
@@ -294,32 +292,32 @@ public class SellerDashboard extends javax.swing.JFrame {
         jLabel16.setBounds(30, 10, 32, 32);
 
         jPanel2.add(transfer);
-        transfer.setBounds(0, 260, 310, 50);
+        transfer.setBounds(0, 270, 310, 50);
 
-        hiistory.setBackground(new java.awt.Color(33, 34, 38));
-        hiistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hiistory.addMouseListener(new java.awt.event.MouseAdapter() {
+        TransactionHistory.setBackground(new java.awt.Color(33, 34, 38));
+        TransactionHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TransactionHistory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hiistoryMouseClicked(evt);
+                TransactionHistoryMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                hiistoryMouseEntered(evt);
+                TransactionHistoryMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                hiistoryMouseExited(evt);
+                TransactionHistoryMouseExited(evt);
             }
         });
-        hiistory.setLayout(null);
+        TransactionHistory.setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Transaction History");
+        jLabel13.setText("Purchase History");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hiistory.add(jLabel13);
-        jLabel13.setBounds(100, 12, 170, 20);
+        TransactionHistory.add(jLabel13);
+        jLabel13.setBounds(90, 10, 170, 20);
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar-32.png"))); // NOI18N
-        hiistory.add(jLabel17);
+        TransactionHistory.add(jLabel17);
         jLabel17.setBounds(22, 0, 40, 50);
 
         lblOpen6.setBackground(new java.awt.Color(33, 34, 38));
@@ -345,11 +343,66 @@ public class SellerDashboard extends javax.swing.JFrame {
         lblOpen6.add(jLabel19);
         jLabel19.setBounds(30, 0, 32, 50);
 
-        hiistory.add(lblOpen6);
+        TransactionHistory.add(lblOpen6);
         lblOpen6.setBounds(0, 180, 310, 50);
 
-        jPanel2.add(hiistory);
-        hiistory.setBounds(0, 330, 310, 50);
+        hiistory1.setBackground(new java.awt.Color(33, 34, 38));
+        hiistory1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hiistory1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hiistory1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hiistory1MouseExited(evt);
+            }
+        });
+        hiistory1.setLayout(null);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Transaction History");
+        jLabel28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory1.add(jLabel28);
+        jLabel28.setBounds(100, 12, 170, 20);
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar-32.png"))); // NOI18N
+        hiistory1.add(jLabel29);
+        jLabel29.setBounds(22, 0, 40, 50);
+
+        lblOpen10.setBackground(new java.awt.Color(33, 34, 38));
+        lblOpen10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblOpen10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblOpen10MouseExited(evt);
+            }
+        });
+        lblOpen10.setLayout(null);
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Show Open Show");
+        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen10.add(jLabel34);
+        jLabel34.setBounds(100, 12, 150, 20);
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/openShops.png"))); // NOI18N
+        lblOpen10.add(jLabel35);
+        jLabel35.setBounds(30, 0, 32, 50);
+
+        hiistory1.add(lblOpen10);
+        lblOpen10.setBounds(0, 180, 310, 50);
+
+        TransactionHistory.add(hiistory1);
+        hiistory1.setBounds(0, 350, 310, 50);
+
+        jPanel2.add(TransactionHistory);
+        TransactionHistory.setBounds(0, 410, 310, 50);
 
         viewCart.setBackground(new java.awt.Color(33, 34, 38));
         viewCart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -368,10 +421,10 @@ public class SellerDashboard extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("View Stock");
+        jLabel20.setText("View Cart");
         jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         viewCart.add(jLabel20);
-        jLabel20.setBounds(100, 12, 160, 20);
+        jLabel20.setBounds(100, 12, 150, 20);
 
         lblOpen7.setBackground(new java.awt.Color(33, 34, 38));
         lblOpen7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -399,12 +452,12 @@ public class SellerDashboard extends javax.swing.JFrame {
         viewCart.add(lblOpen7);
         lblOpen7.setBounds(0, 180, 310, 50);
 
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit-11-32.png"))); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart-36-32.png"))); // NOI18N
         viewCart.add(jLabel23);
         jLabel23.setBounds(40, 10, 32, 32);
 
         jPanel2.add(viewCart);
-        viewCart.setBounds(0, 470, 310, 50);
+        viewCart.setBounds(0, 540, 310, 50);
 
         settings.setBackground(new java.awt.Color(33, 34, 38));
         settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -459,7 +512,7 @@ public class SellerDashboard extends javax.swing.JFrame {
         jLabel27.setBounds(32, 10, 30, 32);
 
         jPanel2.add(settings);
-        settings.setBounds(0, 400, 310, 50);
+        settings.setBounds(0, 480, 310, 50);
 
         Logout.setBackground(new java.awt.Color(33, 34, 38));
         Logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -513,78 +566,160 @@ public class SellerDashboard extends javax.swing.JFrame {
         Logout.add(jLabel33);
         jLabel33.setBounds(40, 10, 32, 32);
 
-        Logout1.setBackground(new java.awt.Color(33, 34, 38));
-        Logout1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Logout1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Logout1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Logout1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Logout1MouseExited(evt);
-            }
-        });
-        Logout1.setLayout(null);
-
-        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Log Out");
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Logout1.add(jLabel34);
-        jLabel34.setBounds(100, 12, 150, 20);
-
-        lblOpen10.setBackground(new java.awt.Color(33, 34, 38));
-        lblOpen10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblOpen10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblOpen10MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblOpen10MouseExited(evt);
-            }
-        });
-        lblOpen10.setLayout(null);
-
-        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Show Open Show");
-        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblOpen10.add(jLabel35);
-        jLabel35.setBounds(100, 12, 150, 20);
-
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/openShops.png"))); // NOI18N
-        lblOpen10.add(jLabel36);
-        jLabel36.setBounds(30, 0, 32, 50);
-
-        Logout1.add(lblOpen10);
-        lblOpen10.setBounds(0, 180, 310, 50);
-
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-exit-32.png"))); // NOI18N
-        Logout1.add(jLabel37);
-        jLabel37.setBounds(40, 10, 32, 32);
-
-        Logout.add(Logout1);
-        Logout1.setBounds(0, 560, 310, 50);
-
         jPanel2.add(Logout);
-        Logout.setBounds(0, 540, 310, 50);
+        Logout.setBounds(0, 610, 310, 50);
 
-        lblBalance.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Your Balance (Rs.) :");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(30, 170, 150, 17);
+
+        lblBalance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblBalance.setForeground(new java.awt.Color(255, 255, 255));
-        lblBalance.setText("0.00");
+        lblBalance.setText("00.00");
         jPanel2.add(lblBalance);
-        lblBalance.setBounds(200, 150, 100, 22);
+        lblBalance.setBounds(180, 170, 120, 17);
 
-        lblName.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lblName.setForeground(new java.awt.Color(255, 255, 255));
-        lblName.setText("Icon by Gouri's");
-        jPanel2.add(lblName);
-        lblName.setBounds(30, 120, 270, 22);
+        hiistory2.setBackground(new java.awt.Color(33, 34, 38));
+        hiistory2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hiistory2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hiistory2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hiistory2MouseExited(evt);
+            }
+        });
+        hiistory2.setLayout(null);
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Transaction History");
+        jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory2.add(jLabel36);
+        jLabel36.setBounds(100, 12, 170, 20);
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar-32.png"))); // NOI18N
+        hiistory2.add(jLabel37);
+        jLabel37.setBounds(22, 0, 40, 50);
+
+        lblOpen11.setBackground(new java.awt.Color(33, 34, 38));
+        lblOpen11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblOpen11MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblOpen11MouseExited(evt);
+            }
+        });
+        lblOpen11.setLayout(null);
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Show Open Show");
+        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen11.add(jLabel38);
+        jLabel38.setBounds(100, 12, 150, 20);
+
+        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/openShops.png"))); // NOI18N
+        lblOpen11.add(jLabel39);
+        jLabel39.setBounds(30, 0, 32, 50);
+
+        hiistory2.add(lblOpen11);
+        lblOpen11.setBounds(0, 180, 310, 50);
+
+        hiistory3.setBackground(new java.awt.Color(33, 34, 38));
+        hiistory3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hiistory3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hiistory3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hiistory3MouseExited(evt);
+            }
+        });
+        hiistory3.setLayout(null);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Transaction History");
+        jLabel40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hiistory3.add(jLabel40);
+        jLabel40.setBounds(100, 12, 170, 20);
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar-32.png"))); // NOI18N
+        hiistory3.add(jLabel41);
+        jLabel41.setBounds(22, 0, 40, 50);
+
+        lblOpen12.setBackground(new java.awt.Color(33, 34, 38));
+        lblOpen12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblOpen12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblOpen12MouseExited(evt);
+            }
+        });
+        lblOpen12.setLayout(null);
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Show Open Show");
+        jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpen12.add(jLabel42);
+        jLabel42.setBounds(100, 12, 150, 20);
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/openShops.png"))); // NOI18N
+        lblOpen12.add(jLabel43);
+        jLabel43.setBounds(30, 0, 32, 50);
+
+        hiistory3.add(lblOpen12);
+        lblOpen12.setBounds(0, 180, 310, 50);
+
+        hiistory2.add(hiistory3);
+        hiistory3.setBounds(0, 350, 310, 50);
+
+        jPanel2.add(hiistory2);
+        hiistory2.setBounds(0, 340, 310, 50);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 310, 700);
+
+        Daynamic.setBackground(new java.awt.Color(52, 52, 60));
+        Daynamic.setLayout(new java.awt.GridBagLayout());
+        getContentPane().add(Daynamic);
+        Daynamic.setBounds(310, 0, 770, 700);
+
+        jPanel1.setBackground(new java.awt.Color(52, 52, 60));
+        jPanel1.setLayout(null);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart-36-32.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(60, 610, 30, 40);
+
+        lblCartNo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCartNo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCartNo.setText("0");
+        jPanel1.add(lblCartNo);
+        lblCartNo.setBounds(50, 600, 40, 14);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(1080, 0, 120, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -629,13 +764,13 @@ public class SellerDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblOpen6MouseExited
 
-    private void hiistoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistoryMouseEntered
-        hiistory.setBackground(new Color(52,52,60));
-    }//GEN-LAST:event_hiistoryMouseEntered
+    private void TransactionHistoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionHistoryMouseEntered
+        TransactionHistory.setBackground(new Color(52,52,60));
+    }//GEN-LAST:event_TransactionHistoryMouseEntered
 
-    private void hiistoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistoryMouseExited
-             hiistory.setBackground(new Color(34,33,38));
-    }//GEN-LAST:event_hiistoryMouseExited
+    private void TransactionHistoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionHistoryMouseExited
+             TransactionHistory.setBackground(new Color(34,33,38));
+    }//GEN-LAST:event_TransactionHistoryMouseExited
 
     private void lblOpen7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen7MouseEntered
         // TODO add your handling code here:
@@ -686,148 +821,118 @@ public class SellerDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutMouseExited
 
     private void lblOpenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpenMouseClicked
-       
-        
-        try
+       try
        {
-       previous.setVisible(false);
-       c.gridx=0;
+          previous.setVisible(false);
+     
+       previous=new ShowShops(myID, lblCartNo, IP);
+         c.gridx=0;
        c.gridy=0;
-       previous=new SaleHistory(myID, IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
-       c.gridx=0;
-       c.gridy=0;
-       previous=new SaleHistory(myID, IP);
        
-       mainPanel.add(previous,c);
+       previous=new ShowShops(myID, lblCartNo, IP);
+                c.gridx=0;
+       c.gridy=0;
+       Daynamic.add(previous,c);
            
        }
-        
-        
-     
+              
     }//GEN-LAST:event_lblOpenMouseClicked
 
     private void viewCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCartMouseClicked
+    
         
         
         try
        {
           previous.setVisible(false);
-       c.gridx=0;
+     
+       previous=new Cart(myID,lblCartNo, lblBalance, IP);
+         c.gridx=0;
        c.gridy=0;
-       previous=new Stock(myID, mainPanel, c,previous, IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
-       c.gridx=0;
+       
+       previous=new Cart(myID, lblCartNo, lblBalance,IP);
+                c.gridx=0;
        c.gridy=0;
-       previous=new Stock(myID, mainPanel,c,previous, IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
            
-       }
-        
-        
-       
+       } 
     }//GEN-LAST:event_viewCartMouseClicked
 
-    private void hiistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistoryMouseClicked
-                try
+    private void TransactionHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionHistoryMouseClicked
+             try
        {
           previous.setVisible(false);
        c.gridx=0;
        c.gridy=0;
-       previous=new HistoryforSeller(myID,IP);
+       previous=new History(myID,IP);
        
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
                 c.gridx=0;
        c.gridy=0;
-       previous=new HistoryforSeller(myID,IP);
+       previous=new History(myID,IP);
        
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
            
        }
-    }//GEN-LAST:event_hiistoryMouseClicked
+    }//GEN-LAST:event_TransactionHistoryMouseClicked
 
     private void transferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferMouseClicked
-                try
+  try
        {
           previous.setVisible(false);
-       c.gridx=0;
+      
+       previous=new TransferMoney(myID, lblBalance,IP);
+          c.gridx=0;
        c.gridy=0;
-       previous=new SellerTransferMoney(myID, lblBalance,IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
                 c.gridx=0;
        c.gridy=0;
-       previous=new SellerTransferMoney(myID, lblBalance,IP);
+       previous=new TransferMoney(myID, lblBalance,IP);
        
-       mainPanel.add(previous,c);
-       }
+       Daynamic.add(previous,c);
+           
+       }         
     }//GEN-LAST:event_transferMouseClicked
 
     private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
-        
-           try
+        try
        {
           previous.setVisible(false);
-       c.gridx=0;
+      
+       previous=new Settings(myID,IP);
+          c.gridx=0;
        c.gridy=0;
-       previous=new SellerSettings(myID,IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
                 c.gridx=0;
        c.gridy=0;
-       previous=new SellerSettings(myID,IP);
+       previous=new Settings(myID,IP);
        
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
            
-       }
+       } 
     }//GEN-LAST:event_settingsMouseClicked
 
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
-          Connection con;
-        Statement st;
-        ResultSet rs;
-        
-            try
-            {
-                 Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
-            
-            String sq="update Seller set Available=0 where Shop_ID='"+myID+"'";
-             
-             st=con.createStatement();
-            rs=st.executeQuery(sq);
-                
-             
-         
-            con.close();
-            }
-            catch(Exception e)
-            {
-               System.out.println(e.getMessage());
-            }
-       
-        
-        
-        this.setVisible(false);
+       this.setVisible(false);
        new LogIn(IP).setVisible(true);
+       
     }//GEN-LAST:event_LogoutMouseClicked
 
     private void lblOpen10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen10MouseEntered
@@ -838,37 +943,79 @@ public class SellerDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblOpen10MouseExited
 
-    private void Logout1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Logout1MouseClicked
+    private void hiistory1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_Logout1MouseClicked
+    }//GEN-LAST:event_hiistory1MouseClicked
 
-    private void Logout1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Logout1MouseEntered
+    private void hiistory1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory1MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_Logout1MouseEntered
+    }//GEN-LAST:event_hiistory1MouseEntered
 
-    private void Logout1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Logout1MouseExited
+    private void hiistory1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory1MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_Logout1MouseExited
+    }//GEN-LAST:event_hiistory1MouseExited
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-                     try
+    private void lblOpen11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen11MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblOpen11MouseEntered
+
+    private void lblOpen11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen11MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblOpen11MouseExited
+
+    private void lblOpen12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen12MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblOpen12MouseEntered
+
+    private void lblOpen12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpen12MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblOpen12MouseExited
+
+    private void hiistory3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hiistory3MouseClicked
+
+    private void hiistory3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hiistory3MouseEntered
+
+    private void hiistory3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hiistory3MouseExited
+
+    private void hiistory2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory2MouseClicked
+           try
        {
           previous.setVisible(false);
-       c.gridx=0;
+      
+       previous=new AmountHIstory(myID);
+          c.gridx=0;
        c.gridy=0;
-       previous=new AddItems(myID, IP);
-       
-       mainPanel.add(previous,c);
+       Daynamic.add(previous,c);
        }
        catch(Exception e)
        {
                 c.gridx=0;
        c.gridy=0;
-       previous=new AddItems(myID, IP);
+       previous=new AmountHIstory(myID);
        
-       mainPanel.add(previous,c);
-       }
-    }//GEN-LAST:event_jLabel2MouseClicked
+       Daynamic.add(previous,c);
+           
+       } 
+    }//GEN-LAST:event_hiistory2MouseClicked
+
+    private void hiistory2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory2MouseEntered
+        hiistory2.setBackground(new Color(52,52,60));
+    }//GEN-LAST:event_hiistory2MouseEntered
+
+    private void hiistory2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiistory2MouseExited
+          hiistory2.setBackground(new Color(34,33,38));
+    }//GEN-LAST:event_hiistory2MouseExited
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+       
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -900,15 +1047,18 @@ public class SellerDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SellerDashboard(myID,"").setVisible(true);
+                new CustomerDashboard(myID,"").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Daynamic;
     private javax.swing.JPanel Logout;
-    private javax.swing.JPanel Logout1;
-    private javax.swing.JPanel hiistory;
+    private javax.swing.JPanel TransactionHistory;
+    private javax.swing.JPanel hiistory1;
+    private javax.swing.JPanel hiistory2;
+    private javax.swing.JPanel hiistory3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -927,6 +1077,8 @@ public class SellerDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -936,29 +1088,66 @@ public class SellerDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel lb;
     private javax.swing.JLabel lblBalance;
+    private javax.swing.JLabel lblCartNo;
     private javax.swing.JLabel lblName;
     private javax.swing.JPanel lblOpen;
     private javax.swing.JPanel lblOpen1;
     private javax.swing.JPanel lblOpen10;
+    private javax.swing.JPanel lblOpen11;
+    private javax.swing.JPanel lblOpen12;
     private javax.swing.JPanel lblOpen5;
     private javax.swing.JPanel lblOpen6;
     private javax.swing.JPanel lblOpen7;
     private javax.swing.JPanel lblOpen8;
     private javax.swing.JPanel lblOpen9;
-    private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel settings;
     private javax.swing.JPanel transfer;
     private javax.swing.JPanel viewCart;
     // End of variables declaration//GEN-END:variables
-    static private String myID;
+   static private String myID=null;
+ int noOfItemsInCart=0;
+public int checkCart()
+{
+    Connection con;
+        Statement st;
+        ResultSet rs;
+         try
+            {
+                 Class.forName("oracle.jdbc.driver.OracleDriver");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            
+            String sq2="Select Count(Item_ID) as \"Number\" from CartView where CMS_ID='"+myID+"'";
+               
+             st=con.createStatement();
+            rs=st.executeQuery(sq2);
+               
+            rs.next();
+            noOfItemsInCart=rs.getInt("Number");
+            }
+         catch(Exception e)
+         {
+             
+         }
+         return noOfItemsInCart;
+}
+
+
 }

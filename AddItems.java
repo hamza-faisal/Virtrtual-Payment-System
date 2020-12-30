@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author SWHB
+ 
  */
 public class AddItems extends javax.swing.JPanel {
 
@@ -379,7 +379,7 @@ public class AddItems extends javax.swing.JPanel {
             try
             {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
-                con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+                con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
 
                 String sql="Insert into Item values("+ItemID+",'"+txtItemName.getText()+"',"+Integer.parseInt(txtItemQuantity.getText())+","+Integer.parseInt(txtItemPrice.getText())+",'"+myID+"')";
                 st=con.createStatement();
@@ -459,7 +459,7 @@ public class AddItems extends javax.swing.JPanel {
         try
             {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
-                con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+                con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
 
                 String sql="Select ItemID.nextval as \"ItemID\" from dual";
                 st=con.createStatement();

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author SWHB
+
  */
 public class LogIn extends javax.swing.JFrame {
 
@@ -328,7 +328,7 @@ public class LogIn extends javax.swing.JFrame {
         try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             s= con.createStatement();
             rs=s.executeQuery("Select * from Credentials");
             while(rs.next())
