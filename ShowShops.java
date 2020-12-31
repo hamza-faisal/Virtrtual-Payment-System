@@ -217,7 +217,7 @@ public class ShowShops extends javax.swing.JPanel{
             try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             //"Select Count(Item_ID) as \"Number\" from Item where Shop_ID='"+Shop_ID[comboShops.getSelectedIndex()-1]+"'";
            String sq2="Select * from Cart where Shop_ID='"+Shop_ID[comboShops.getSelectedIndex()-1]+"' and Item_ID='"+searchedItemID[ItemList.getSelectedIndex()]+"' and CMS_ID='"+myID+"'";
                   
@@ -306,7 +306,7 @@ public class ShowShops extends javax.swing.JPanel{
             try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sq2="Select Count(Item_ID) as \"Number\" from Item where Shop_ID='"+Shop_ID[comboShops.getSelectedIndex()-1]+"'";
                
@@ -410,7 +410,7 @@ public class ShowShops extends javax.swing.JPanel{
             try
             {
                  Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sql="Select Shop_ID,Shop_Name from Seller where Available=1";
              st=con.createStatement();
