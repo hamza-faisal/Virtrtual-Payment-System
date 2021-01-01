@@ -234,7 +234,7 @@ public class History extends javax.swing.JPanel {
          try
             {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sq2="Select Count(Item_Name) as \"Number\" from Purchased where CMS_ID='"+myID+"'";
                

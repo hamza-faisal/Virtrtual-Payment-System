@@ -16,18 +16,18 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author SWHB
+
  */
-public class SendMoney extends javax.swing.JPanel {
+public class TransferMoney extends javax.swing.JPanel {
+     
     String IP;
-    public SendMoney(String senderID, JLabel lblBalance, String IP) {
+    public TransferMoney(String senderID, JLabel lblBalance, String IP) {
         initComponents();
         this.senderID=senderID;
         this.lblBalance=lblBalance;
-        this.IP=IP;
         //System.out.println(lblBalance.getText());
       youramount=Double.parseDouble(lblBalance.getText());
-                
+         this.IP=IP;       
         lblError.setVisible(false);
         
     }
@@ -82,7 +82,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 279;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(8, 270, 0, 0);
         add(txtCMS, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -91,7 +91,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 277;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(4, 270, 0, 0);
         add(jSeparator1, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
@@ -103,7 +103,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.ipadx = 27;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 270, 0, 0);
         add(jLabel1, gridBagConstraints);
 
         lblSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -114,7 +114,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(63, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(63, 270, 0, 0);
         add(lblSearch, gridBagConstraints);
 
         txtAmount.setBackground(new java.awt.Color(52, 52, 60));
@@ -147,7 +147,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 279;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(8, 270, 0, 0);
         add(txtAmount, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -156,7 +156,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 277;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(4, 270, 0, 0);
         add(jSeparator2, gridBagConstraints);
 
         lblSearch1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -168,7 +168,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 270, 0, 0);
         add(lblSearch1, gridBagConstraints);
 
         btnWithdraw.setBackground(new java.awt.Color(70, 80, 95));
@@ -213,7 +213,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 43;
         gridBagConstraints.ipady = -2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 120, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 270, 0, 0);
         add(lblPassword, gridBagConstraints);
 
         txtPassword.setBackground(new java.awt.Color(52, 52, 60));
@@ -235,7 +235,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 290;
         gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 120, 0, 100);
+        gridBagConstraints.insets = new java.awt.Insets(10, 270, 0, 217);
         add(txtPassword, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -244,7 +244,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 289;
         gridBagConstraints.ipady = 19;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 120, 0, 100);
+        gridBagConstraints.insets = new java.awt.Insets(0, 270, 0, 217);
         add(jSeparator3, gridBagConstraints);
 
         lblError.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -256,7 +256,7 @@ public class SendMoney extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.ipadx = 95;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(49, 130, 45, 0);
+        gridBagConstraints.insets = new java.awt.Insets(49, 280, 105, 0);
         add(lblError, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -280,7 +280,7 @@ public class SendMoney extends javax.swing.JPanel {
             
             String sql="Select CMS_ID from Credentials where UserKey=1";
              
-             st=con.createStatement();
+            st=con.createStatement();
             rs=st.executeQuery(sql);
             while(rs.next())
             {
@@ -356,7 +356,7 @@ public class SendMoney extends javax.swing.JPanel {
           Class.forName("oracle.jdbc.driver.OracleDriver");
             con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
-            String sql="Select CMS_ID,Password from Credentials where UserKey=0";
+            String sql="Select CMS_ID,Password from Credentials where UserKey=1";
              
              st=con.createStatement();
             rs=st.executeQuery(sql);
@@ -401,9 +401,9 @@ public class SendMoney extends javax.swing.JPanel {
             String sql="Update Customer set Balance=(select Balance from Customer where CMS_ID='"+txtCMS.getText()+"')+"+Integer.parseInt(txtAmount.getText())+" where CMS_ID='"+txtCMS.getText()+"'";
              
             rs=st.executeQuery(sql);
-             String sql1="Update AdminPanel set Balance=(select Balance from AdminPanel where Username='"+senderID+"')-"+Integer.parseInt(txtAmount.getText())+" where Username='"+senderID+"'";
+             String sql1="Update Customer set Balance=(select Balance from Customer where CMS_ID='"+senderID+"')-"+Integer.parseInt(txtAmount.getText())+" where CMS_ID='"+senderID+"'";
             rs=st.executeQuery(sql1);
-            String sql2="insert into AdminTransaction values('"+senderID+"','"+txtCMS.getText()+"',"+Integer.parseInt(txtAmount.getText())+",sysdate)";
+            String sql2="insert into FundsTransfered values('"+senderID+"','"+txtCMS.getText()+"',"+Integer.parseInt(txtAmount.getText())+",sysdate)";
             rs=st.executeQuery(sql2);
             con.close();
             JOptionPane.showMessageDialog(null, "Amount Has been Transfered");

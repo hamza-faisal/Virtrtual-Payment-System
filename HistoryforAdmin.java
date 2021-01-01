@@ -25,9 +25,11 @@ public class HistoryforAdmin extends javax.swing.JPanel {
      */
     
     String myID;
-    public HistoryforAdmin(String myID) {
+    String IP;
+    public HistoryforAdmin(String myID, String IP) {
         initComponents();
         this.myID=myID;
+        this.IP=IP;
        loadData();
     }
 
@@ -228,7 +230,7 @@ public class HistoryforAdmin extends javax.swing.JPanel {
          try
             {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sq2="Select Count(Transfered_Date) as \"Number\" from viewadmin";
                

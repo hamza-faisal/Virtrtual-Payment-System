@@ -39,7 +39,7 @@ public class Settings extends javax.swing.JPanel {
             try
             {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
               st=con.createStatement();
               
               
@@ -444,7 +444,7 @@ public class Settings extends javax.swing.JPanel {
             try
             {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             st=con.createStatement();
             
    

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
- * @author SWHB
+ *
  */
 public class Updates extends javax.swing.JFrame {
 
@@ -298,7 +298,7 @@ public class Updates extends javax.swing.JFrame {
             try
             {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
-                con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+                con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
 
                 String sql="Update Item set Item_Name='"+txtItemName.getText()+"',Price="+Integer.parseInt(txtItemPrice.getText())+",Quantity="+Integer.parseInt(txtItemQuantity.getText())+" where Shop_ID='"+myID+"' and Item_ID="+Integer.parseInt(txtItemID4.getText())+"";
                 st=con.createStatement();
