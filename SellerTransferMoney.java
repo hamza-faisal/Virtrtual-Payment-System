@@ -337,7 +337,7 @@ public class SellerTransferMoney extends javax.swing.JPanel {
         try
         {
           Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             
             String sql="Select CMS_ID,Password from Credentials where UserKey=2";
              
@@ -413,7 +413,7 @@ public class SellerTransferMoney extends javax.swing.JPanel {
         try
         {
           Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","bukhari");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@"+IP+":1521:xe","system","bukhari");
             st=con.createStatement();
             String sql23="Select Balance from AdminPanel";
             rs=st.executeQuery(sql23);
